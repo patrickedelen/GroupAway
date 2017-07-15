@@ -1,0 +1,10 @@
+<template name="userinfo">
+
+    <h3>Update user info</h3>
+    <form class="userinfo-update-info">
+        <input type="text" name="fullname" placeholder="Full Name" value="{{user.profile.fullName}}" required>
+        <input type="text" name="address" placeholder="Address" value="{{user.profile.address}}" required>
+        <input type="text" name="zipcode" placeholder="Zip Code" value="{{user.profile.zipcode}}" required>
+        <input type="submit" name="submit" value="Add your user info">
+    </form>
+</template>

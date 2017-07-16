@@ -23,18 +23,18 @@ Meteor.methods({
             $set: {'profile.groupId': groupId}
         });
     },
-    'groups.addPayment'(groupId, paymentAmt, paymentDesc) {
-        let groupMembers = Groups.findOne({"_id": groupId}).memberIds;
-        let pmntEach = paymentAmt / groupMembers.length;
+    // 'groups.addPayment'(groupId, paymentAmt, paymentDesc) {
+    //     let groupMembers = Groups.findOne({"_id": groupId}).memberIds;
+    //     let pmntEach = paymentAmt / groupMembers.length;
 
-        Groups.update(groupId, {
-            $push: {payments: {
-                paymentDescription: paymentDesc,
-                paymentTotal: paymentAmt,
-                paymentEach: pmntEach,
-                pendingMembers: groupMembers,
-                paymentOwner: this.userId
-            }}
-        });
-    }
+    //     Groups.update(groupId, {
+    //         $push: {payments: {
+    //             paymentDescription: paymentDesc,
+    //             paymentTotal: paymentAmt,
+    //             paymentEach: pmntEach,
+    //             pendingMembers: groupMembers,
+    //             paymentOwner: this.userId
+    //         }}
+    //     });
+    // }
 });

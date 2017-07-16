@@ -1,7 +1,17 @@
 <template name="App_joingroup">
     {{#if Template.subscriptionsReady}}
     <h1>welcome to {{groupIndiv}}</h1>
-    <a href="#" class="joingroup">Join Group</a>
-        {{usrInfo}}
+        {{#if currentUser}}
+            <a href="#" class="joingroup">Join Group</a>
+            <br>
+            <h4>Current members</h4>
+            {{#each membersList}}
+                {{this.userFullName}}
+                <img src="{{this.userPhoto}}">
+            {{/each}}
+        {{else}}
+            <h4>Please sign in to join a group</h4>
+            {{> loginButtons}}
+        {{/if}}
     {{/if}}
 </template>

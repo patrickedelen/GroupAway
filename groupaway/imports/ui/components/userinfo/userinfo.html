@@ -1,0 +1,26 @@
+<template name="userinfo">
+
+    <h3>Update user info</h3>
+    <form class="userinfo-update-info">
+        <input type="text" name="fullname" placeholder="Full Name" value="{{user.profile.fullName}}" required>
+        <input type="text" name="address" placeholder="Address" value="{{user.profile.address}}" required>
+        <input type="text" name="zipcode" placeholder="Zip Code" value="{{user.profile.zipcode}}" required>
+        <input type="submit" name="submit" value="Add your user info">
+    </form>
+
+    <form class="userinfo-add-card">
+        <input type="number" name="ccnum" placeholder="Credit Card Number" required>
+        <input type="number" name="cvc" placeholder="Security Code" required>
+        <input type="number" name="expmo" placeholder="Experation Month" required>
+        <input type="number" name="expyr" placeholder="Experation Year" required>
+        <input type="submit" name="submit" value="Added Credit Card">
+    </form>
+    
+    <h3>See your active payments</h3>
+    {{#if currentUser}}
+        {{#each currentUser.profile.paymentsPending}}
+            <a href="#" class="paymentIdA" id="{{this}}">Payment ID: {{this}}</a>
+        {{/each}}
+    {{/if}}
+
+</template>

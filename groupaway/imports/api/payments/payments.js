@@ -1,0 +1,5 @@
+// payments collection definition
+
+import { Mongo } from 'meteor/mongo';
+
+export const Payments = new Mongo.Collection('payments');

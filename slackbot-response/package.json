@@ -1,0 +1,14 @@
+{
+  "name": "slackbot-response",
+  "version": "1.0.0",
+  "description": "responds to slackbot HTTP request",
+  "main": "groupaway.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Patrick Edelen",
+  "license": "MIT",
+  "dependencies": {
+    "mongoose": "^4.11.3"
+  }
+}

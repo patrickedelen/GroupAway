@@ -1,10 +1,9 @@
-<template name="App_joingroup">
-    {{#if Template.subscriptionsReady}}
-    <h1>Welcome to {{groupIndiv}}</h1>
-        {{#if currentUser}}
-            <a href="#" class="joingroup">Join Group</a>
+<template name="payment">
+    <h2>Payment Overview for {{paymentIndiv.paymentDesc}}</h2>
+    <p>Charge per user: {{paymentIndiv.paymentEach}}</p>
+    {{#if currentUser}}
             <br>
-            <h4>Current members</h4>
+            <h4>Payments Owed By:</h4>
             {{#each membersList}}
                 <div class="memberList text-center">
                 <h5>{{this.userFullName}} 
@@ -12,9 +11,9 @@
                 </h5>
                 </div>
             {{/each}}
-        {{else}}
-            <h4>Please sign in to join a group</h4>
+            <br>
+    {{else}}
+            <h4>Please sign in to see payments</h4>
             {{> loginButtons}}
-        {{/if}}
     {{/if}}
 </template>

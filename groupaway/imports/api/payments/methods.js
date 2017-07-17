@@ -11,7 +11,10 @@ var stripe = require("stripe")(
 Meteor.methods({
     'payments.create'(paymentDesc, paymentAmt, groupId) {
         let requesterId = this.userId;
-        let groupMembers = Groups.findOne({"_id": groupId}).memberIds;
+        if(!groupId) {groupId = "KcSxhKJbz3ZYcGLHL";}
+        console.log(groupId);
+
+        let groupMembers = Groups.find({"_id": groupId}).fetch()[0].memberIds;
         let pmntEach = parseInt(paymentAmt) / groupMembers.length;
 
         console.log(pmntEach);
@@ -37,6 +40,7 @@ Meteor.methods({
     },
     'payments.confirmPayment'(paymentId, creditToken) {
         console.log('Submitting payment for paymentId: ' + paymentId);
+        let scopedId = this.userId;
 
         let processPayment = function(err, charge) {
             if (err) {
@@ -44,12 +48,12 @@ Meteor.methods({
                 return err;
             } else {
                 console.log('Payment passed');
-                Meteor.users.update(this.userId, {
+                Meteor.users.update(scopedId, {
                     $pull: { "profile.paymentsPending": paymentId }
                 });
 
                 Payments.update(paymentId, {
-                    $pull: { "pendingIds": this.userId }
+                    $pull: { "pendingIds": scopedId }
                 });
             }
         }
@@ -64,7 +68,7 @@ Meteor.methods({
         stripe.charges.create({
             amount: paymentConverted,
             currency: "usd",
-            source: usrToken,
+            customer: usrToken,
             description: paymentDesc
         }, function(err, charge) {
             processPaymentAsync(err, charge);

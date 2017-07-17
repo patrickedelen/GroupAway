@@ -60,3 +60,5 @@ typings/
 #secrets
 start.sh
 settings.json
+*.pem
+.deploy/

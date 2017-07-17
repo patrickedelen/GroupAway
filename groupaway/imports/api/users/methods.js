@@ -38,15 +38,18 @@ Meteor.methods({
         }
     },
     'users.setCreditCard'(creditToken) {
+        console.log('Adding card');
+        var cId = '';
+        let userSavedId = this.userId;
         let processPayment = function(err, charge) {
             if (err) {
-                console.log(err);
+                console.log(err.message);
                 return err;
             } else {
                 console.log('Intro payment passed');
-                Meteor.users.update({"_id": this.userId}, {
+                return Meteor.users.update({"_id": userSavedId}, {
                     $set: { 
-                        "profile.creditToken": creditToken,
+                        "profile.creditToken": cId,
                         "profile.currentBalence": 20.00
                         }
                 });
@@ -54,15 +57,30 @@ Meteor.methods({
         }
 
         let processPaymentAsync = Meteor.bindEnvironment(processPayment);
+        let customerDesc = "Customer for userId: " + this.userId;
 
-        console.log('Adding credit card');
-        stripe.charges.create({
-            amount: 2000,
-            currency: "usd",
-            source: creditToken, // obtained with Stripe.js
-            description: "Introduction charge for GroupAway"
-        }, function(err, charge) {
-            processPaymentAsync(err, charge);
+        stripe.customers.create({
+            description: customerDesc,
+            source: creditToken,
+            }, function(err, customer) {
+
+                if (err) {
+                    console.log(err);
+                    return err;
+                } else {
+                console.log('Adding credit card');
+
+                cId = customer.id;
+
+                stripe.charges.create({
+                    amount: 2000,
+                    currency: "usd",
+                    customer: cId, // obtained with Stripe.js
+                    description: "Introduction charge for GroupAway"
+                }, function(err, charge) {
+                    processPaymentAsync(err, charge);
+                });
+                }
         });
     }
 });

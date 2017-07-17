@@ -1,0 +1,25 @@
+<template name="groupoverview">
+    <h2>Overview for {{groupIndiv.groupName}}</h2>
+    <p>Copy link to share: https://groupaway.pedelen.com/joingroup/{{groupIndiv._id}}</p>
+    {{#if currentUser}}
+            <br>
+            <h4>Current members</h4>
+            {{#each membersList}}
+                <div class="memberList text-center">
+                <h5>{{this.userFullName}} 
+                <img class="photoRound" src="{{this.userPhoto}}">
+                </h5>
+                </div>
+            {{/each}}
+            <br>
+            <h4>Current charges</h4>
+            {{#each groupIndiv.payments}}
+                <div class="memberList text-center">
+                    <h5><a href="/viewpayment/{{this}}">{{this}}</a></h5>
+                </div>
+            {{/each}}
+        {{else}}
+            <h4>Please sign in to join a group</h4>
+            {{> loginButtons}}
+        {{/if}}
+</template>

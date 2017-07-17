@@ -7,7 +7,8 @@ import '../../ui/pages/home/home.js';
 import '../../ui/pages/not-found/not-found.js';
 import '../../ui/pages/joingroup/joingroup.js';
 import '../../ui/pages/addpayment/addpayment.js';
-
+import '../../ui/pages/groupoverview/groupoverview.js';
+import '../../ui/pages/payment/payment.js';
 // Set up all routes in the app
 FlowRouter.route('/', {
   name: 'App.home',
@@ -27,6 +28,20 @@ FlowRouter.route('/addpayment/', {
   name: 'App.addpayment',
   action() {
     BlazeLayout.render('App_body', { main: 'addpayment'});
+  }
+});
+
+FlowRouter.route('/groupoverview/:groupId', {
+  name: 'App.addpayment',
+  action() {
+    BlazeLayout.render('App_body', { main: 'groupoverview'});
+  }
+});
+
+FlowRouter.route('/viewpayment/:paymentId', {
+  name: 'App.viewpayment',
+  action() {
+    BlazeLayout.render('App_body', { main: 'payment'});
   }
 });
 

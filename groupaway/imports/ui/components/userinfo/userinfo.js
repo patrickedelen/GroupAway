@@ -44,7 +44,6 @@ Template.userinfo.events({
         const cvc = target.cvc.value;
         const expmo = target.expmo.value;
         const expyr = target.expyr.value;
-        console.log(ReactiveStripe);
 
         Stripe.createToken({
             number: ccnum,
@@ -56,8 +55,10 @@ Template.userinfo.events({
             Meteor.call('users.setCreditCard', stripeToken, (err) => {
                 if (err) {
                     alert(err);
+                    console.log(err);
                 } else {
                     alert('Card token added');
+                    console.log(stripeToken);
                 }
             });
         });

@@ -1,14 +1,13 @@
 <template name="info">
   <h2>Add your group</h2>
-  <ul>
-    <li>
+  <div>
       <form class="info-link-add">
         <input type="text" name="name" placeholder="Group Name" required>
         <input type="submit" name="submit" value="Add new group">
       </form>
-    </li>
+    <h4>See active groups</h4>
     {{#each groups}}
-      <li><a href="/joingroup/{{_id}}" target="_blank">{{groupName}}</a></li>
+      <a href="/groupoverview/{{_id}}">{{groupName}}</a>
     {{/each}}
-  </ul>
+  </div>
 </template>

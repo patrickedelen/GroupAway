@@ -1,0 +1,48 @@
+nav.navbar {
+    background-color: #4484cd;
+}
+
+.navbar-brand {
+    display: block;
+    background: url('/img/image.png');
+    background-size: contain;
+    background-repeat-x: none;
+    height: 50px;
+    width: 150px;
+}
+
+div.container-fluid.text-center {
+    margin-top: 20px;
+    min-height: 600px;
+}
+
+footer.container-fluid {
+    background-color: #4484cd;
+}
+
+input[type=text], input[type=number] {
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 3px;
+    margin-bottom: 2px;
+}
+
+input[type=submit] {
+    border: 2px solid #4484cd;
+    background-color: #78b0ef;
+    border-radius: 5px;
+}
+
+.memberList {
+    background: #78b0ef;
+    border-radius: 5px;
+    padding: 5px;
+}
+.photoRound {
+    height: 50px;
+    border-radius: 50%;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: white;
+}
